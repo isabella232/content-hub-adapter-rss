@@ -9,13 +9,6 @@ Please read the versioning section of the project to see what other CoreMedia ve
 If a project is inactive it means that the development has been discontinued and won't support future CoreMedia versions."
 )
 
-_Optional:_
-
-![System Version](https://img.shields.io/static/v1?message=&lt;external_system_version&gt;&label=&lt;external_system_name&gt;&style=for-the-badge&labelColor=6FC3B8&color=006CAE 
-"CoreMedia Labs projects may depend on third party systems or APIs. 
-This badge type shows the version number that is required for the selected project version."
-)
-
 # Content Hub Adapter for RSS
 
 The *content-hub-adapter-rss plugin* provides access to articles from an external RSS feed. Editors can directly import articles including their pictures from within the CoreMedia Studio library.
