@@ -11,8 +11,8 @@
     <maven.compiler.release>11</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <cm.studio-server.core.version>2110.1</cm.studio-server.core.version>
-    <cm.common.core.version>2110.1</cm.common.core.version>
+    <cm.studio-server.core.version>2110.1-pr3</cm.studio-server.core.version>
+    <cm.common.core.version>2110.1-pr3</cm.common.core.version>
   </properties>
 
   <repositories>
@@ -78,7 +78,7 @@
     </dependency>
 
     <dependency>
-      <groupId>com.coremedia.content-hub</groupId>
+      <groupId>com.coremedia.cms</groupId>
       <artifactId>content-hub-api</artifactId>
       <scope>provided</scope>
     </dependency>
