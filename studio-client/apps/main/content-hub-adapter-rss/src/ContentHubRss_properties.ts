@@ -43,7 +43,7 @@ const ContentHubRss_properties: ContentHubRss_properties = {
   author_sectionItemKey: "Author",
   published_sectionItemKey: "Published",
   lastModified_sectionItemKey: "Last modified",
-  link_sectionItemKey: "Link"
+  link_sectionItemKey: "Link",
 };
 
 export default ContentHubRss_properties;
