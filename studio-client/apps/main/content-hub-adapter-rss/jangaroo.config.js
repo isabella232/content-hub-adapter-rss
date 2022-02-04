@@ -1,14 +1,15 @@
-/** @type { import('@jangaroo/core').IJangarooConfig } */
-module.exports = {
+const { jangarooConfig } = require("@jangaroo/core");
+
+module.exports = jangarooConfig({
   type: "code",
-  extName: "com.coremedia.labs.plugins__studio-client.content-hub-adapter-rss",
-  extNamespace: "com.coremedia.labs.plugins.adapters.rss",
   sencha: {
+    name: "com.coremedia.labs.plugins__studio-client.content-hub-adapter-rss",
+    namespace: "com.coremedia.labs.plugins.adapters.rss",
     studioPlugins: [
       {
         mainClass: "com.coremedia.labs.plugins.adapters.rss.ContentHubStudioRssPlugin",
-        name: "Content Hub",
+        name: "Content Hub RSS",
       },
     ],
   },
-};
+});
