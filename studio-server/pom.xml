@@ -17,6 +17,8 @@
   </properties>
 
   <repositories>
+    <!-- Optimization: As we download many more artifacts from central than from repository.coremedia.com,
+         make Maven check the central repository first -->
     <repository>
       <id>look-here-first</id>
       <url>https://repo1.maven.org/maven2/</url>
