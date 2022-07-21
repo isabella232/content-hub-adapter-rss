@@ -86,7 +86,7 @@
           <name>The MIT License</name>
           <url>https://github.com/mockito/mockito/blob/master/LICENSE</url>
           <distribution>repo</distribution>
-          <file>the mit license - license.html</file>
+          <file>the mit license - license.txt</file>
         </license>
       </licenses>
     </dependency>
@@ -99,7 +99,7 @@
           <name>MIT License</name>
           <url>http://www.opensource.org/licenses/mit-license.php</url>
           <distribution>repo</distribution>
-          <file>mit license - mit-license.html</file>
+          <file>mit license - license.txt</file>
         </license>
       </licenses>
     </dependency>
