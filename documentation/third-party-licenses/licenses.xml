@@ -16,7 +16,7 @@
     <dependency>
       <groupId>com.rometools</groupId>
       <artifactId>rome</artifactId>
-      <version>1.15.0</version>
+      <version>1.18.0</version>
       <licenses>
         <license>
           <name>The Apache Software License, Version 2.0</name>
@@ -29,7 +29,7 @@
     <dependency>
       <groupId>com.rometools</groupId>
       <artifactId>rome-modules</artifactId>
-      <version>1.15.0</version>
+      <version>1.18.0</version>
       <licenses>
         <license>
           <name>The Apache Software License, Version 2.0</name>
@@ -86,27 +86,27 @@
           <name>The MIT License</name>
           <url>https://github.com/mockito/mockito/blob/master/LICENSE</url>
           <distribution>repo</distribution>
-          <file>the mit license - license.html</file>
+          <file>the mit license - license.txt</file>
         </license>
       </licenses>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>1.7.30</version>
+      <version>1.7.32</version>
       <licenses>
         <license>
           <name>MIT License</name>
           <url>http://www.opensource.org/licenses/mit-license.php</url>
           <distribution>repo</distribution>
-          <file>mit license - mit-license.html</file>
+          <file>mit license - license.txt</file>
         </license>
       </licenses>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
-      <version>5.2.15.RELEASE</version>
+      <version>5.3.14</version>
       <licenses>
         <license>
           <name>Apache License, Version 2.0</name>
@@ -119,7 +119,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
-      <version>5.2.15.RELEASE</version>
+      <version>5.3.14</version>
       <licenses>
         <license>
           <name>Apache License, Version 2.0</name>
