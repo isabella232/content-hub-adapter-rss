@@ -5,15 +5,20 @@ import com.coremedia.contenthub.api.ContentHubContext;
 import com.coremedia.contenthub.api.ContentHubObject;
 import com.coremedia.contenthub.api.ContentHubObjectId;
 import com.coremedia.contenthub.api.ContentHubTransformer;
+import com.coremedia.contenthub.api.ContentHubType;
 import com.coremedia.contenthub.api.Folder;
 import com.coremedia.contenthub.api.GetChildrenResult;
 import com.coremedia.contenthub.api.Item;
 import com.coremedia.contenthub.api.column.ColumnProvider;
 import com.coremedia.contenthub.api.exception.ContentHubException;
 import com.coremedia.contenthub.api.pagination.PaginationRequest;
+import com.coremedia.contenthub.api.search.ContentHubSearchResult;
+import com.coremedia.contenthub.api.search.ContentHubSearchService;
+import com.coremedia.contenthub.api.search.Sort;
 import com.coremedia.labs.plugins.adapters.rss.imageurlextractor.FeedImageExtractor;
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
+import com.rometools.rome.feed.synd.SyndPerson;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import edu.umd.cs.findbugs.annotations.NonNull;
@@ -29,10 +34,13 @@ import java.net.Proxy;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 
-class RSSContentHubAdapter implements ContentHubAdapter {
+class RSSContentHubAdapter implements ContentHubAdapter, ContentHubSearchService {
   private static final Logger LOGGER = LoggerFactory.getLogger(RSSContentHubAdapter.class);
 
   private final RSSContentHubTransformer rssContentHubTransformer;
@@ -87,6 +95,28 @@ class RSSContentHubAdapter implements ContentHubAdapter {
       }
       throw new ContentHubException(msg);
     }
+  }
+
+  @Override
+  public Optional<ContentHubSearchService> searchService() {
+    return Optional.of(this);
+  }
+
+  @Override
+  public ContentHubSearchResult search(String term, @Nullable Folder folder, @Nullable ContentHubType contentHubType, Collection<String> collection, List<Sort> list, int limit) {
+    List<ContentHubObject> collect = new ArrayList<>();
+    int hits = 0;
+    List<SyndEntry> entries = feed.getEntries();
+    for (SyndEntry entry : entries) {
+      ContentHubObjectId id = new ContentHubObjectId(connectionId, entry.getUri());
+      if (matches(term, entry)) {
+        hits++;
+        if (limit <= 0 || collect.size() < limit) {
+          collect.add(new RSSItem(feedImageExtractor, id, feed, entry));
+        }
+      }
+    }
+    return new ContentHubSearchResult(collect, hits);
   }
 
   @NonNull
@@ -148,6 +178,29 @@ class RSSContentHubAdapter implements ContentHubAdapter {
 
 
   //------------------------ Helper ------------------------------------------------------------------------------------
+
+  private boolean matches(String term, SyndEntry entry) {
+    if (match(term, entry.getTitle())) {
+      return true;
+    }
+    if (match(term, entry.getDescription().getValue())) {
+      return true;
+    }
+    if (match(term, entry.getAuthor())) {
+      return true;
+    }
+    if (match(term, entry.getAuthors().stream().map(SyndPerson::getName).collect(Collectors.joining(" ")))) {
+      return true;
+    }
+    return false;
+  }
+
+  private boolean match(String term, String value) {
+    if (value != null) {
+      return value.toLowerCase().contains(term.toLowerCase());
+    }
+    return false;
+  }
 
   /**
    * Just a helper to detect what went wrong when parsing RSS feed.
