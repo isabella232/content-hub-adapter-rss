@@ -59,7 +59,7 @@ jobs:
         env:
           NPM_CONFIG_@coremedia:registry: 'https://npm.coremedia.io'
           NPM_CONFIG_@jangaroo:registry: 'https://npm.coremedia.io'
-        run: pnpm install
+        run: pnpm config set auto-install-peers true && pnpm install --no-frozen-lockfile
 
       - name: Set Release Version
         id: set-release-version
@@ -110,7 +110,7 @@ jobs:
           PLUGINS_NEXUS_PASSWORD: ${{ secrets.PLUGINS_NEXUS_PASSWORD }}
         run: |
           mvn --batch-mode -Pdocs-third-party generate-resources
-          if [ -n "$(git status --porcelain documentation)" ]; then 
+          if [ -n "$(git status --porcelain documentation)" ]; then
             git add documentation
             git commit -m "update license information"
             git push
