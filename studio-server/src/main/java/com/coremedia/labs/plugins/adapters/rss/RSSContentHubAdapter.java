@@ -183,13 +183,13 @@ class RSSContentHubAdapter implements ContentHubAdapter, ContentHubSearchService
     if (match(term, entry.getTitle())) {
       return true;
     }
-    if (match(term, entry.getDescription().getValue())) {
+    if (entry.getDescription() != null && match(term, entry.getDescription().getValue())) {
       return true;
     }
     if (match(term, entry.getAuthor())) {
       return true;
     }
-    if (match(term, entry.getAuthors().stream().map(SyndPerson::getName).collect(Collectors.joining(" ")))) {
+    if (entry.getAuthors() != null && match(term, entry.getAuthors().stream().map(SyndPerson::getName).collect(Collectors.joining(" ")))) {
       return true;
     }
     return false;
